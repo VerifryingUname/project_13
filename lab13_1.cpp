@@ -19,3 +19,37 @@ int main(){
     cout << "Min = " << B[5];
     return 0;
 }
+
+void stat(const double data[], int size, double result[]){
+    double sum = 0.0;
+    for(int i = 0; i < size; i++){
+        sum += data[i];
+    }
+    result[0] = sum / size;
+
+    double variance = 0.0;
+    for(int i = 0; i < size; i++){
+        variance += pow(data[i] - result[0], 2);
+    }
+    result[1] = sqrt(variance / size);
+
+    double product = 1.0;
+    for(int i = 0; i < size; i++){
+        product *= data[i];
+    }
+    result[2] = pow(product, 1.0 / size);
+
+    double reciprocalSum = 0.0;
+    for(int i = 0; i < size; i++){
+        reciprocalSum += 1.0 / data[i];
+    }
+    result[3] = size / reciprocalSum;
+
+    double maxVal = data[0], minVal = data[0];
+    for(int i = 1; i < size; i++){
+        if(data[i] > maxVal) maxVal = data[i];
+        if(data[i] < minVal) minVal = data[i];
+    }
+    result[4] = maxVal;
+    result[5] = minVal;
+}
